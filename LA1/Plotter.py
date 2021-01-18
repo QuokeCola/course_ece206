@@ -59,5 +59,5 @@ class DataPlotter:
         plt.legend()
         plt.show()
 
-Data = DataPlotter('Data/20k_2')
+Data = DataPlotter('Data/10k_2')
 Data.plot()
