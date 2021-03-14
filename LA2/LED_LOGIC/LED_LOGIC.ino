@@ -1,11 +1,15 @@
+#include <Arduino.h>
+
 bool A[2];
 bool B[2];
 int miniStep;
 int turnCount;
 long int lastTime = millis();
 bool digit=false;
+
 #define A_P 12
 #define B_P 11
+
 void setup() {
     // Initialize LED
     for (int i = 1; i<=10; i++){
@@ -54,7 +58,7 @@ void loop() {
         }
     }
     /*** Update Screen ***/
-    if (Time - lastTime > 9) {  // Refresh latency 9+1[ms]
+    if (Time - lastTime > 10) {  // Refresh latency 9+1[ms]
         if (turnCount < 10) {  // If it's a 1 digit number
             snumber(turnCount, 1);
         } else {                // If it's a 2 digit number
