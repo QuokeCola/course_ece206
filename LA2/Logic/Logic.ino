@@ -1,7 +1,7 @@
 bool A[2];
 bool B[2];
 int count;
-int final_Loop;
+int ticks;
 #define A_P 12
 #define B_P 11
 void setup() {
@@ -29,25 +29,25 @@ void loop() {
     count+=1;
     if(count>=4) {
       count = 0;
-      final_Loop+=1;
-      if(final_Loop>=100) {
-        final_Loop = 0;
+      ticks+=1;
+      if(ticks>=100) {
+        ticks = 0;
       }
-      Serial.println(final_Loop);
+      //Serial.println(ticks);
     }
     
-  } else if(A[0]==A[1]&&B[0]==B[1]) {
-    
-  } else {
+  } else if(!(A[0]==A[1]&&B[0]==B[1])){
     count-=1;
     if(count <= -4) {
       count = 0;
-      final_Loop-=1;
-      if(final_Loop<0) {
-        final_Loop = 99;
+      ticks-=1;
+      if(ticks<0) {
+        ticks = 99;
       }
-      Serial.println(final_Loop);
+      //Serial.println(ticks);
     }
   }
-  
+  Serial.println("A B");
+  Serial.println(String(A[0]) + " " + String(B[0]));
+  delay(2000);
 }

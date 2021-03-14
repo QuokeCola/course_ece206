@@ -18,12 +18,7 @@ void setup() {
     digitalWrite(5, HIGH); // Disable dot
 
     // Initialize Encoder
-    pinMode(A_P, INPUT);
-    pinMode(B_P, INPUT);
-    A[0] = digitalRead(A_P);
-    B[0] = digitalRead(B_P);
-    A[1] = digitalRead(A_P);
-    B[1] = digitalRead(B_P);
+    pinMode(A2, INPUT);
     miniStep = 0;
 }
 
@@ -31,35 +26,10 @@ void setup() {
 void loop() {
     long int Time = millis();
     /*** Rotation Detection ***/
-    A[0] = A[1];
-    B[0] = B[1];
-    A[1] = digitalRead(A_P);
-    B[1] = digitalRead(B_P);
-    if((!A[0]&&!A[1]&&!B[0]&& B[1])||
-       (!A[0]&& A[1]&& B[0]&& B[1])||
-       ( A[0]&& A[1]&& B[0]&&!B[1])||
-         A[0]&&!A[1]&&!B[0]&&!B[1]) { // Turn CCW
-        miniStep+=1;
-        if(miniStep>=4) {
-            miniStep = 0;
-            tickCount-=1;
-            if(tickCount<0) {
-                tickCount = 99;
-            }
-        }
-    } else if (!(A[0]==A[1]&&B[0]==B[1])) { // Turn CW (Except same position, 
-                                            // the rest condition was turning CCW)
-        miniStep-=1;
-        if(miniStep <= -4) {
-            miniStep = 0;
-            tickCount+=1;
-            if(tickCount>=100) {
-                tickCount = 0;
-            }
-        }
-    }
+    float voltage = analogRead(A2);
+    int tickCount = (int)voltage/1024.0*99;
     /*** Update Screen ***/
-    if (Time - lastTime > 10) {  // Refresh latency 9+1[ms]
+    if (Time - lastTime > 1) {  // Refresh latency [ms]
         if (tickCount < 10) {  // If it's a 1 digit number
             snumber(tickCount, 1);
         } else {                // If it's a 2 digit number

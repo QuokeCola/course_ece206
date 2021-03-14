@@ -38,7 +38,7 @@ void loop() {
     if((!A[0]&&!A[1]&&!B[0]&& B[1])||
        (!A[0]&& A[1]&& B[0]&& B[1])||
        ( A[0]&& A[1]&& B[0]&&!B[1])||
-         A[0]&&!A[1]&&!B[0]&&!B[1]) { // Turn CCW
+         A[0]&&!A[1]&&!B[0]&&!B[1]) { // Turn CW
         miniStep+=1;
         if(miniStep>=4) {
             miniStep = 0;
@@ -47,7 +47,7 @@ void loop() {
                 tickCount = 99;
             }
         }
-    } else if (!(A[0]==A[1]&&B[0]==B[1])) { // Turn CW (Except same position, 
+    } else if (!(A[0]==A[1]&&B[0]==B[1])) { // Turn CCW (Except same position, 
                                             // the rest condition was turning CCW)
         miniStep-=1;
         if(miniStep <= -4) {
@@ -59,7 +59,7 @@ void loop() {
         }
     }
     /*** Update Screen ***/
-    if (Time - lastTime > 10) {  // Refresh latency 9+1[ms]
+    if (Time - lastTime > 1) {  // Refresh latency [ms]
         if (tickCount < 10) {  // If it's a 1 digit number
             snumber(tickCount, 1);
         } else {                // If it's a 2 digit number
