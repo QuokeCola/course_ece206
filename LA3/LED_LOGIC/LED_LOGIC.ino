@@ -7,8 +7,8 @@ int tickCount;
 long int lastTime = millis();
 bool digit=false;
 
-#define A_P 11
-#define B_P 12
+#define PIN_A 11
+#define PIN_B 12
 
 void setup() {
     // Initialize LED
@@ -18,12 +18,12 @@ void setup() {
     digitalWrite(5, HIGH); // Disable dot
 
     // Initialize Encoder
-    pinMode(A_P, INPUT);
-    pinMode(B_P, INPUT);
-    A[0] = digitalRead(A_P);
-    B[0] = digitalRead(B_P);
-    A[1] = digitalRead(A_P);
-    B[1] = digitalRead(B_P);
+    pinMode(PIN_A, INPUT);
+    pinMode(PIN_B, INPUT);
+    A[0] = digitalRead(PIN_A);
+    B[0] = digitalRead(PIN_B);
+    A[1] = digitalRead(PIN_A);
+    B[1] = digitalRead(PIN_B);
     miniStep = 0;
 }
 
@@ -33,8 +33,8 @@ void loop() {
     /*** Rotation Detection ***/
     A[0] = A[1];
     B[0] = B[1];
-    A[1] = digitalRead(A_P);
-    B[1] = digitalRead(B_P);
+    A[1] = digitalRead(PIN_A);
+    B[1] = digitalRead(PIN_B);
     if((!A[0]&&!A[1]&&!B[0]&& B[1])||
        (!A[0]&& A[1]&& B[0]&& B[1])||
        ( A[0]&& A[1]&& B[0]&&!B[1])||

@@ -1,14 +1,8 @@
 #include <Arduino.h>
 
-bool A[2];
-bool B[2];
-int miniStep;
 int tickCount;
 long int lastTime = millis();
 bool digit=false;
-
-#define A_P 11
-#define B_P 12
 
 void setup() {
     // Initialize LED
