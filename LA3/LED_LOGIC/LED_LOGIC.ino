@@ -25,6 +25,7 @@ void setup() {
     A[1] = digitalRead(PIN_A);
     B[1] = digitalRead(PIN_B);
     miniStep = 0;
+    Serial.begin(115200);
 }
 
 // infinite loop for real-time operation
@@ -35,6 +36,8 @@ void loop() {
     B[0] = B[1];
     A[1] = digitalRead(PIN_A);
     B[1] = digitalRead(PIN_B);
+    Serial.println("A B");
+    Serial.println(String(A[1])+ " " +String(B[1]));
     if((!A[0]&&!A[1]&&!B[0]&& B[1])||
        (!A[0]&& A[1]&& B[0]&& B[1])||
        ( A[0]&& A[1]&& B[0]&&!B[1])||
